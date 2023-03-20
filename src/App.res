@@ -2,31 +2,28 @@
 let make = () => {
   let (count, setCount) = React.useState(() => 0)
 
-  let makeItem = (
-    id: string,
-    name: string,
-    qty: float,
-    price: float,
-    subtotal: float
-    ) => {
+  let makeItem = (id: string, name: string, qty: float, price: float, subtotal: float) => {
     let item: CartItem.cart_item = {
       product_id: id,
       product_name: name,
-      qty: qty,
-      price: price,
-      subtotal: subtotal
+      qty,
+      price,
+      subtotal,
     }
     item
   }
 
-  let item = makeItem("a", "Longtong Mayur", 1.0, 2000.0, 2000.0)
+  let items = []
+  let _ = Js.Array2.push(
+    items,
+    makeItem("a", "Longtong Mayur", 1.0, 2000.0, 2000.0)
+  )
+  let _ = Js.Array2.push(
+    items,
+    makeItem("b", "Longstong Mayor", 2.0, 2000.0, 4000.0)
+  )
 
   <div className="p-6">
-    <h1 className="text-3xl font-semibold"> {"What is this about?"->React.string} </h1>
-    <p>
-      {React.string("This is a simple template for a Vite project using ReScript & Tailwind CSS.")}
-    </p>
-    <h2 className="text-2xl font-semibold mt-5"> {React.string("Fast Refresh Test")} </h2>
     <Button onClick={_ => setCount(count => count + 1)}>
       {React.string(`count is ${count->Int.toString}`)}
     </Button>
@@ -35,7 +32,9 @@ let make = () => {
       <code> {React.string("src/App.res")} </code>
       {React.string(" and save to test Fast Refresh.")}
     </p>
-
-    <CartItem item={item} />
+    {Js.Array2.map(
+      items,
+      item => <CartItem item={item} />
+    )->React.array}
   </div>
 }
