@@ -3,7 +3,11 @@ type cart_item = {
   product_name: string,
   qty: float,
   price: float,
-  subtotal: float,
+}
+
+let formatRp = (number) => {
+let result = [number]->Js.Array2.toLocaleString
+result
 }
 
 let makeItem = (id: string, name: string, qty: float, price: float, subtotal: float) => {
@@ -12,7 +16,7 @@ let makeItem = (id: string, name: string, qty: float, price: float, subtotal: fl
     product_name: name,
     qty,
     price,
-    subtotal,
+    qty *. price,
   }
   item
 }
@@ -26,11 +30,11 @@ let make = (~item: cart_item) => {
   <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
   <div>
   <dt className="inline"> {"Satuan: "->React.string} </dt>
-  <dd className="inline"> {item.price->Float.toString->React.string} </dd>
+  <dd className="inline"> {item.price->formatRp->React.string} </dd>
   </div>
   <div>
   <dt className="inline"> {"QTY: "->React.string} </dt>
-  <dd className="inline"> {item.qty->Float.toString->React.string} </dd>
+  <dd className="inline"> {item.qty->formatRp->React.string} </dd>
   </div>
   </dl>
   </div>
@@ -38,7 +42,7 @@ let make = (~item: cart_item) => {
   <p className="sr-only"> {"Subtotal"->React.string} </p>
   <p
   className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none">
-  {item.subtotal->Float.toString->React.string}
+  {item.subtotal->formatRp->React.string}
   </p>
   <button className="text-gray-600 transition hover:text-red-600">
   <span className="sr-only"> {"Remove item"->React.string} </span>

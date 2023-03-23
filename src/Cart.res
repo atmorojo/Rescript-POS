@@ -1,6 +1,6 @@
 @react.component
-let make = () => {
-  let (items, setItems) = React.useState(_ => [])
+let make = (~item_list:array<CartItem.cart_item>) => {
+  let (items, setItems) = React.useState(_ => item_list)
 
   <section>
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
