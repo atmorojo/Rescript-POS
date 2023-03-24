@@ -3,6 +3,7 @@ type cart_item = {
   product_name: string,
   qty: float,
   price: float,
+  subtotal: float
 }
 
 let formatRp = (number) => {
@@ -10,17 +11,16 @@ let result = [number]->Js.Array2.toLocaleString
 result
 }
 
-let makeItem = (id: string, name: string, qty: float, price: float, subtotal: float) => {
+let makeItem = (id: string, name: string, qty: float, price: float) => {
   let item: cart_item = {
     product_id: id,
     product_name: name,
     qty,
     price,
-    qty *. price,
+    subtotal: qty *. price,
   }
   item
 }
-
 
 @react.component
 let make = (~item: cart_item) => {
