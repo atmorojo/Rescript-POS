@@ -11,7 +11,7 @@ let make = (~item_list:array<CartItem.cart_item>) => {
         </header>
         <div className="mt-8">
           <ul className="space-y-4">
-            {Js.Array2.map(items, item => <CartItem key={item.product_id} item={item} />)->React.array}
+            {Js.Array2.map(item_list, item => <CartItem key={item.product_id} item={item} />)->React.array}
           </ul>
           <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
             <div className="w-screen max-w-lg space-y-4">
